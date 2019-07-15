@@ -40,30 +40,54 @@ struct SignInView : View {
     var body: some View {
         VStack {
             Text("Status: You are not signed in!").color(.red)
+            Spacer()
+            
+            VStack {
+                VStack(spacing: 18) {
+                    TextField($typedUsername, placeholder: Text("Username"), onEditingChanged: { changed in
+                        print("onEditing: \(changed)")
+                    }).textFieldStyle(.roundedBorder)
+                    
+                    SecureField($typedPassword, placeholder: Text("Password")).textFieldStyle(.roundedBorder)
+                    Button(action: login) {
+                        HStack{
+                            Text("Login")
+                                .color(.white)
+                                .frame(width: UIScreen.main.bounds.width - 80 ,height: 45)
+                        }
+                        }.background(Color.blue)
+                    }
+                    .padding().cornerRadius(16)
+                    .background(Color.gray.opacity(0.05))
+                    .frame(height: 80, alignment: .center)
+                Spacer()
+            }
             List {
-                Section(header: Text("Available users")) {
+                Section(header: Text("Available users").bold().color(.blue), footer: Text("\(self.availableUsers.count) users signed up").italic()) {
                     ForEach(0..<availableUsers.count) {
                         Text("\(self.availableUsers[$0])")
                     }
                 }
-            }.listStyle(.grouped).frame(height: 123, alignment: .top)
-            Spacer()
-            VStack {
-                TextField($typedUsername, placeholder: Text("Username")).padding().textFieldStyle(.roundedBorder)
-                TextField($typedPassword, placeholder: Text("Password")).padding().textFieldStyle(.roundedBorder)
-                Button(action: login) {
-                    HStack{
-                    Text("Login")
-                        .color(.white)
-                        .frame(width: UIScreen.main.bounds.width - 80 ,height: 45)
-                    }
-                }.background(Color.blue)
-            }
-                .padding().cornerRadius(16)
-                .background(Color.gray.opacity(0.05))
-                .frame(height: 80, alignment: .center)
-            Spacer()
+            }.listStyle(.grouped)
+             .frame(height: 160, alignment: .top)
         }.padding(25)
+    }
+    
+    func doCredentialsMatch() -> Bool {
+        // check if typed credentials match stored credentials
+        
+        let dbEncryptedUsername = UserDefaults.standard.string(forKey: "encryptedUsername") ?? ""
+        let dbEncryptedPassword = UserDefaults.standard.string(forKey: "encryptedPassword") ?? ""
+        
+        do {
+            let decryptedUsername = try dbEncryptedUsername.decrypt(key: key, iv: iv)
+            let decryptedPassword = try dbEncryptedPassword.decrypt(key: key, iv: iv)
+            print("Successfully decrypted username and password.")
+            return (typedUsername == decryptedUsername && typedPassword == decryptedPassword)
+        } catch {
+            print("Could not decrypt username and password.")
+            return false
+        }
     }
     
     func login() {
@@ -73,7 +97,7 @@ struct SignInView : View {
             Alert(title: Text("Please enter a password"))
         } else {
             // encrypt data, store in NS defaults and log in
-
+            
             //show loading
             do {
                 let encryptedUsername = try typedUsername.encrypt(key: key, iv: iv)
@@ -83,11 +107,16 @@ struct SignInView : View {
                 print("Successfully encrypted username and password.")
             } catch {
                 print("Could not encrypt username and password.")
+                
+//                print("Could not decrypt username and password.")
+//                self.loadingView.isHidden = true
+//                isLoggedIn = false
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+                // if doCredentialsMatch:
                 // dismiss loading
-               //            isLoggedIn = true
+                // isLoggedIn = true
             })
         }
     }
