@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C4DA2588EB7463266AAC741 /* Pods_LogInWithEncryption.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DD3160538EE4770881CB54 /* Pods_LogInWithEncryption.framework */; };
 		FFAFB76522DBB98E006EEFE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB76422DBB98E006EEFE4 /* AppDelegate.swift */; };
 		FFAFB76722DBB98E006EEFE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB76622DBB98E006EEFE4 /* SceneDelegate.swift */; };
 		FFAFB76922DBB98E006EEFE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB76822DBB98E006EEFE4 /* ContentView.swift */; };
@@ -15,6 +16,7 @@
 		FFAFB77122DBB990006EEFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFAFB76F22DBB990006EEFE4 /* LaunchScreen.storyboard */; };
 		FFAFB77C22DBB990006EEFE4 /* LogInWithEncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB77B22DBB990006EEFE4 /* LogInWithEncryptionTests.swift */; };
 		FFAFB78722DBB990006EEFE4 /* LogInWithEncryptionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB78622DBB990006EEFE4 /* LogInWithEncryptionUITests.swift */; };
+		FFAFB79722DBBF68006EEFE4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB79622DBBF68006EEFE4 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A2341C04860CDCF8DF46EA94 /* Pods-LogInWithEncryption.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LogInWithEncryption.release.xcconfig"; path = "Target Support Files/Pods-LogInWithEncryption/Pods-LogInWithEncryption.release.xcconfig"; sourceTree = "<group>"; };
+		AD51390352AA6BACE4BE32E6 /* Pods-LogInWithEncryption.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LogInWithEncryption.debug.xcconfig"; path = "Target Support Files/Pods-LogInWithEncryption/Pods-LogInWithEncryption.debug.xcconfig"; sourceTree = "<group>"; };
+		E2DD3160538EE4770881CB54 /* Pods_LogInWithEncryption.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LogInWithEncryption.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAFB76122DBB98E006EEFE4 /* LogInWithEncryption.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogInWithEncryption.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAFB76422DBB98E006EEFE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFAFB76622DBB98E006EEFE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		FFAFB78222DBB990006EEFE4 /* LogInWithEncryptionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogInWithEncryptionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAFB78622DBB990006EEFE4 /* LogInWithEncryptionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInWithEncryptionUITests.swift; sourceTree = "<group>"; };
 		FFAFB78822DBB990006EEFE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFAFB79622DBBF68006EEFE4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C4DA2588EB7463266AAC741 /* Pods_LogInWithEncryption.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18054796E898461D7C091545 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD51390352AA6BACE4BE32E6 /* Pods-LogInWithEncryption.debug.xcconfig */,
+				A2341C04860CDCF8DF46EA94 /* Pods-LogInWithEncryption.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		1E1CAFE18DB6E000D712652E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2DD3160538EE4770881CB54 /* Pods_LogInWithEncryption.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FFAFB75822DBB98D006EEFE4 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +107,8 @@
 				FFAFB77A22DBB990006EEFE4 /* LogInWithEncryptionTests */,
 				FFAFB78522DBB990006EEFE4 /* LogInWithEncryptionUITests */,
 				FFAFB76222DBB98E006EEFE4 /* Products */,
+				18054796E898461D7C091545 /* Pods */,
+				1E1CAFE18DB6E000D712652E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +132,7 @@
 				FFAFB76F22DBB990006EEFE4 /* LaunchScreen.storyboard */,
 				FFAFB77222DBB990006EEFE4 /* Info.plist */,
 				FFAFB76C22DBB990006EEFE4 /* Preview Content */,
+				FFAFB79622DBBF68006EEFE4 /* Extensions.swift */,
 			);
 			path = LogInWithEncryption;
 			sourceTree = "<group>";
@@ -143,9 +170,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFAFB78B22DBB990006EEFE4 /* Build configuration list for PBXNativeTarget "LogInWithEncryption" */;
 			buildPhases = (
+				EE14A25BA6744F4790B28EEA /* [CP] Check Pods Manifest.lock */,
 				FFAFB75D22DBB98E006EEFE4 /* Sources */,
 				FFAFB75E22DBB98E006EEFE4 /* Frameworks */,
 				FFAFB75F22DBB98E006EEFE4 /* Resources */,
+				5E271C06853C5A05C9CF127C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,6 +291,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E271C06853C5A05C9CF127C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LogInWithEncryption/Pods-LogInWithEncryption-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LogInWithEncryption/Pods-LogInWithEncryption-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LogInWithEncryption/Pods-LogInWithEncryption-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE14A25BA6744F4790B28EEA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LogInWithEncryption-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FFAFB75D22DBB98E006EEFE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -270,6 +341,7 @@
 				FFAFB76522DBB98E006EEFE4 /* AppDelegate.swift in Sources */,
 				FFAFB76722DBB98E006EEFE4 /* SceneDelegate.swift in Sources */,
 				FFAFB76922DBB98E006EEFE4 /* ContentView.swift in Sources */,
+				FFAFB79722DBBF68006EEFE4 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +504,7 @@
 		};
 		FFAFB78C22DBB990006EEFE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD51390352AA6BACE4BE32E6 /* Pods-LogInWithEncryption.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -451,6 +524,7 @@
 		};
 		FFAFB78D22DBB990006EEFE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2341C04860CDCF8DF46EA94 /* Pods-LogInWithEncryption.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
