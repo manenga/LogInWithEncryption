@@ -13,6 +13,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 let key = "rosesR3dS0m3A3eBlu3Oth3S@R3N0Tee"
 let iv  = "ThisIsATestYaKno"
@@ -20,43 +21,72 @@ let iv  = "ThisIsATestYaKno"
 struct ContentView : View {
     
     @State var isLoggedIn: Bool = false
-
-    var body: some View {
-//        if self.$isLoggedIn {
-//            LoggedInView.init()
-//        } else {
-            SignInView()
-//        }
-    }
-}
-
-struct SignInView : View {
-    
+    @State var showUsernameAlert: Bool = false
+    @State var showPasswordAlert: Bool = false
     @State var typedUsername: String = ""
     @State var typedPassword: String = ""
     
     var availableUsers = ["Manenga", "Mungandi"]
     
+    let dism = Alert.Button.destructive(Text("OK"))
+    
     var body: some View {
+        
+        ZStack {
+            HomeView.opacity(isLoggedIn ? 1 : 0)
+            AuthView.opacity(isLoggedIn ? 0 : 1)
+//            Alert(title: Text("empty username"), dismissButton: dism)
+//            Alert(title: Text("Please enter a username")).opacity(showUsernameAlert ? 0 : 1)
+//            Alert(title: Text("Please enter a password")).opacity(isLoggedIn ? 0 : 1)
+        
+        }
+    }
+    
+    @State var isEditingUsers: Bool = false
+    
+    private let spacing: Length = 18
+    private let signInBtnText = Text("Sign In").color(.white).frame(width: UIScreen.main.bounds.width - 80 ,height: 45)
+    private let signUpBtnText = Text("Sign up").color(.blue).frame(width: UIScreen.main.bounds.width - 80 ,height: 45)
+    
+    var AuthView: some View {
         VStack {
             Text("Status: You are not signed in!").color(.red)
             Spacer()
             
             VStack {
-                VStack(spacing: 18) {
-                    TextField($typedUsername, placeholder: Text("Username"), onEditingChanged: { changed in
-                        print("onEditing: \(changed)")
-                    }).textFieldStyle(.roundedBorder)
-                    
-                    SecureField($typedPassword, placeholder: Text("Password")).textFieldStyle(.roundedBorder)
-                    Button(action: login) {
-                        HStack{
-                            Text("Login")
-                                .color(.white)
-                                .frame(width: UIScreen.main.bounds.width - 80 ,height: 45)
-                        }
-                        }.background(Color.blue)
+                VStack(spacing: spacing) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Username")
+                            .font(.system(size: 15))
+                            .opacity(0.5)
+                        
+                        ResponderableTextField(text: $typedUsername,
+                                               isFirstResponder: true,
+                                               keyboardType: .default)
+                            .padding(10)
+                            .frame(height: 50)
+                            .border(Color.black, width: 0.3, cornerRadius: 10)
                     }
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Password")
+                            .font(.system(size: 15))
+                            .opacity(0.5)
+                        
+                        SecureField($typedPassword, onCommit: {
+                            // to do
+                        })
+                            .padding(10)
+                            .frame(height: 50)
+                            .border(Color.black, width: 0.3, cornerRadius: 10)
+                    }
+                    
+                    Button(action: login) {
+                        signInBtnText
+                    }.background(Color.blue)
+                    Button(action: signUp) {
+                        signUpBtnText
+                    }
+                }
                     .padding().cornerRadius(16)
                     .background(Color.gray.opacity(0.05))
                     .frame(height: 80, alignment: .center)
@@ -68,93 +98,109 @@ struct SignInView : View {
                         Text("\(self.availableUsers[$0])")
                     }
                 }
-            }.listStyle(.grouped)
-             .frame(height: 160, alignment: .top)
-        }.padding(25)
+                }.listStyle(.grouped)
+                .frame(height: 160, alignment: .top)
+            }.padding(25)
     }
     
-    func doCredentialsMatch() -> Bool {
-        // check if typed credentials match stored credentials
-        
-        let dbEncryptedUsername = UserDefaults.standard.string(forKey: "encryptedUsername") ?? ""
-        let dbEncryptedPassword = UserDefaults.standard.string(forKey: "encryptedPassword") ?? ""
-        
-        do {
-            let decryptedUsername = try dbEncryptedUsername.decrypt(key: key, iv: iv)
-            let decryptedPassword = try dbEncryptedPassword.decrypt(key: key, iv: iv)
-            print("Successfully decrypted username and password.")
-            return (typedUsername == decryptedUsername && typedPassword == decryptedPassword)
-        } catch {
-            print("Could not decrypt username and password.")
-            return false
-        }
-    }
     
-    func login() {
-        if typedUsername.isEmpty {
-            Alert(title: Text("Please enter a username"))
-        } else if typedPassword.isEmpty {
-            Alert(title: Text("Please enter a password"))
-        } else {
-            // encrypt data, store in NS defaults and log in
-            
-            //show loading
-            do {
-                let encryptedUsername = try typedUsername.encrypt(key: key, iv: iv)
-                let encryptedPassword = try typedPassword.encrypt(key: key, iv: iv)
-                UserDefaults.standard.set(encryptedUsername, forKey: "encryptedUsername")
-                UserDefaults.standard.set(encryptedPassword, forKey: "encryptedPassword")
-                print("Successfully encrypted username and password.")
-            } catch {
-                print("Could not encrypt username and password.")
-                
-//                print("Could not decrypt username and password.")
-//                self.loadingView.isHidden = true
-//                isLoggedIn = false
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
-                // if doCredentialsMatch:
-                // dismiss loading
-                // isLoggedIn = true
-            })
-        }
-    }
-}
-
-struct SignUpView : View {
     
-    var body: some View {
-        VStack {
-            Text("Status: You do not have any accounts").color(.blue)
-            Spacer()
-            Text("Create an account")
-        }
-    }
-}
-
-struct LoggedInView : View {
     
-    var body: some View {
+    var HomeView: some View {
         VStack {
             Text("Status: You are signed in!").color(.green)
             Spacer()
             Button(action: logout) {
                 Text("Logout")
-            }.foregroundColor(.purple).padding(7)
-        }.padding(25)
+                }.foregroundColor(.purple).padding(7)
+            }.padding(25)
+    }
+    
+    func doCredentialsMatch() -> Bool {
+        // check if typed credentials match stored credentials
+        
+        let storedEncryptedPassword = UserDefaults.standard.string(forKey: "encryptedPassword") ?? ""
+        
+        do {
+            let decryptedPassword = try storedEncryptedPassword.decrypt(key: key, iv: iv)
+            print("Successfully decrypted password.")
+            return (typedPassword == decryptedPassword)
+        } catch {
+            print("Could not decrypt password.")
+            return false
+        }
+    }
+    
+    func dismissAlert() {
+        showUsernameAlert = false
+    }
+    
+    func encryptData() {
+        //show loading
+        
+//        let users = UserDefaults.standard.dictionary(forKey: "users") ?? [:]
+//        availableUsers = users.keys.map({ String($0) })
+        
+        // encrypt data, store in NS defaults
+        do {
+            let encryptedPassword = try typedPassword.encrypt(key: key, iv: iv)
+            UserDefaults.standard.set(typedPassword, forKey: "username")
+            UserDefaults.standard.set(encryptedPassword, forKey: "encryptedPassword")
+            print("Successfully encrypted username and password.")
+        } catch {
+            print("Could not encrypt username and password.")
+            //                self.loadingView.isHidden = true
+            //                isLoggedIn = false
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+            // if doCredentialsMatch:
+            // dismiss loading
+            // isLoggedIn = true
+        })
+    }
+    
+    func login() {
+        isLoggedIn = true
+        
+        if typedUsername.isEmpty {
+            showUsernameAlert = true
+        } else if typedPassword.isEmpty {
+            Alert(title: Text("Please enter a password"))
+        } else {
+            encryptData()
+        }
+    }
+    
+    func signUp() {
+        if typedUsername.isEmpty {
+            Alert(title: Text("Please enter a username"))
+        } else if typedPassword.isEmpty {
+            Alert(title: Text("Please enter a password"))
+        } else {
+            encryptData()
+        }
     }
     
     func logout() {
-        // log user out
+        isLoggedIn = false // log user out
+    }
+}
+
+struct User: Equatable, Hashable, Codable, Identifiable {
+    let id: UUID
+    var name: String
+    
+    init(name: String) {
+        self.id = UUID()
+        self.name = name
     }
 }
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        SignInView()
-//        LoggedInView()
+        ContentView()
     }
 }
 #endif

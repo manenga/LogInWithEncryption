@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C4DA2588EB7463266AAC741 /* Pods_LogInWithEncryption.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DD3160538EE4770881CB54 /* Pods_LogInWithEncryption.framework */; };
+		FF21C60122E3723F00F4F916 /* ResponderableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21C60022E3723F00F4F916 /* ResponderableTextField.swift */; };
 		FFAFB76522DBB98E006EEFE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB76422DBB98E006EEFE4 /* AppDelegate.swift */; };
 		FFAFB76722DBB98E006EEFE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB76622DBB98E006EEFE4 /* SceneDelegate.swift */; };
 		FFAFB76922DBB98E006EEFE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFB76822DBB98E006EEFE4 /* ContentView.swift */; };
@@ -40,6 +41,7 @@
 		A2341C04860CDCF8DF46EA94 /* Pods-LogInWithEncryption.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LogInWithEncryption.release.xcconfig"; path = "Target Support Files/Pods-LogInWithEncryption/Pods-LogInWithEncryption.release.xcconfig"; sourceTree = "<group>"; };
 		AD51390352AA6BACE4BE32E6 /* Pods-LogInWithEncryption.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LogInWithEncryption.debug.xcconfig"; path = "Target Support Files/Pods-LogInWithEncryption/Pods-LogInWithEncryption.debug.xcconfig"; sourceTree = "<group>"; };
 		E2DD3160538EE4770881CB54 /* Pods_LogInWithEncryption.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LogInWithEncryption.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF21C60022E3723F00F4F916 /* ResponderableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponderableTextField.swift; sourceTree = "<group>"; };
 		FFAFB76122DBB98E006EEFE4 /* LogInWithEncryption.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogInWithEncryption.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAFB76422DBB98E006EEFE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFAFB76622DBB98E006EEFE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				FFAFB77222DBB990006EEFE4 /* Info.plist */,
 				FFAFB76C22DBB990006EEFE4 /* Preview Content */,
 				FFAFB79622DBBF68006EEFE4 /* Extensions.swift */,
+				FF21C60022E3723F00F4F916 /* ResponderableTextField.swift */,
 			);
 			path = LogInWithEncryption;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFAFB76522DBB98E006EEFE4 /* AppDelegate.swift in Sources */,
+				FF21C60122E3723F00F4F916 /* ResponderableTextField.swift in Sources */,
 				FFAFB76722DBB98E006EEFE4 /* SceneDelegate.swift in Sources */,
 				FFAFB76922DBB98E006EEFE4 /* ContentView.swift in Sources */,
 				FFAFB79722DBBF68006EEFE4 /* Extensions.swift in Sources */,

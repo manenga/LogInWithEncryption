@@ -6,10 +6,27 @@
 //  Copyright © 2019 Manenga Mungandi. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import LPSnackbar
+import SwiftUI
 import CryptoSwift
+
+prefix operator ⋮
+prefix func ⋮(hex:UInt32) -> Color {
+    return Color(hex)
+}
+
+extension Color {
+    init(_ hex: UInt32, opacity:Double = 1.0) {
+        let red = Double((hex & 0xff0000) >> 16) / 255.0
+        let green = Double((hex & 0xff00) >> 8) / 255.0
+        let blue = Double((hex & 0xff) >> 0) / 255.0
+        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
+    }
+}
+
+let hexColor:(UInt32) -> (Color) = {
+    return Color($0)
+}
 
 extension String {
     
@@ -26,10 +43,6 @@ extension String {
 }
 
 extension UIViewController {
-    
-    public func showSnack(message: String) {
-        LPSnackbar.showSnack(title: message)
-    }
     
     public func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
